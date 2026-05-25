@@ -53,17 +53,18 @@ class DefaultFirebaseOptions {
     apiKey: 'AIzaSyBOMmw4cSgll9muUD_uaFu-0F-R4r9CD1Y',
     appId: '1:523980747506:android:e88eee0f164ebdb75f166b',
     messagingSenderId: '523980747506',
-    projectId: 'flutter-chat-app-42c5e',
-    storageBucket: 'flutter-chat-app-42c5e.appspot.com',
+    projectId: 'flutter-chatapp-42c5e',
+    storageBucket: 'flutter-chatapp-42c5e.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
     apiKey: 'AIzaSyAQ-0vC0x8sw8DBUoCuiGiLJZ2deK_IQ1Q',
     appId: '1:523980747506:ios:ca394bc5465054345f166b',
     messagingSenderId: '523980747506',
-    projectId: 'flutter-chat-app-42c5e',
-    storageBucket: 'flutter-chat-app-42c5e.appspot.com',
-    iosClientId: '523980747506-n9upldrnp3bk57s2c5dt8gu7e17aipgi.apps.googleusercontent.com',
-    iosBundleId: 'com.example.chatAppFlutterTest',
+    projectId: 'flutter-chatapp-42c5e',
+    storageBucket: 'flutter-chatapp-42c5e.appspot.com',
+    iosClientId:
+        '523980747506-n9upldrnp3bk57s2c5dt8gu7e17aipgi.apps.googleusercontent.com',
+    iosBundleId: 'com.example.chatappFlutterTest',
   );
 }

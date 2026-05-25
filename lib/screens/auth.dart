@@ -112,7 +112,7 @@ class _AuthScreenState extends State<AuthScreen> {
                         children: [
                           if (!_isLogin)
                             UserImagePicker(
-                              onPickImage: (pickedImage) {
+                              (pickedImage) {
                                 _selectedImage = pickedImage;
                               },
                             ),
