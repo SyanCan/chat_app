@@ -31,7 +31,6 @@ class _AuthScreenState extends State<AuthScreen> {
     final isValid = _form.currentState!.validate();
 
     if (!isValid || !_isLogin && _selectedImage == null) {
-      // show error message ...
       return;
     }
 
@@ -42,7 +41,8 @@ class _AuthScreenState extends State<AuthScreen> {
         _isAuthenticating = true;
       });
       if (_isLogin) {
-        final userCredentials = await _firebase.signInWithEmailAndPassword(
+        // PERBAIKAN: hapus "final userCredentials =" karena tidak dipakai
+        await _firebase.signInWithEmailAndPassword(
             email: _enteredEmail, password: _enteredPassword);
       } else {
         final userCredentials = await _firebase.createUserWithEmailAndPassword(
@@ -69,6 +69,7 @@ class _AuthScreenState extends State<AuthScreen> {
       if (error.code == 'email-already-in-use') {
         // ...
       }
+      if (!mounted) return; // PERBAIKAN: cek mounted sebelum pakai context
       ScaffoldMessenger.of(context).clearSnackBars();
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
@@ -128,7 +129,6 @@ class _AuthScreenState extends State<AuthScreen> {
                                   !value.contains('@')) {
                                 return 'Please enter a valid email address.';
                               }
-
                               return null;
                             },
                             onSaved: (value) {

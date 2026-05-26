@@ -9,9 +9,19 @@ import 'package:chat_app/screens/auth.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
+
+  try {
+    if (Firebase.apps.isEmpty) {
+      await Firebase.initializeApp(
+        options: DefaultFirebaseOptions.currentPlatform,
+      );
+    }
+
+    print('FIREBASE CONNECTED');
+  } catch (e) {
+    print('FIREBASE ERROR: $e');
+  }
+
   runApp(const App());
 }
 
@@ -22,23 +32,26 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'FlutterChat',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData().copyWith(
         colorScheme: ColorScheme.fromSeed(
-            seedColor: const Color.fromARGB(255, 63, 17, 177)),
+          seedColor: const Color.fromARGB(255, 63, 17, 177),
+        ),
       ),
       home: StreamBuilder(
-          stream: FirebaseAuth.instance.authStateChanges(),
-          builder: (ctx, snapshot) {
-            if (snapshot.connectionState == ConnectionState.waiting) {
-              return const SplashScreen();
-            }
+        stream: FirebaseAuth.instance.authStateChanges(),
+        builder: (ctx, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const SplashScreen();
+          }
 
-            if (snapshot.hasData) {
-              return const ChatScreen();
-            }
+          if (snapshot.hasData) {
+            return const ChatScreen();
+          }
 
-            return const AuthScreen();
-          }),
+          return const AuthScreen();
+        },
+      ),
     );
   }
 }
